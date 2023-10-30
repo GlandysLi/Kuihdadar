@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- NORMAL LOGIN -->
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Kuih Dadar Create Role Form</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Calender -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="assets/css/classic.css">
+  <link rel="stylesheet" href="assets/css/classic.date.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <!-- Axios -->
+  <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+  
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="profile.html">Alex Smith</a></h1>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="profile.html"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="skillsets.html" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>My Skills</span></a></li>
+          <li><a href="notification.html"><i class="bx bx-book-content"></i> <span>Notification</span></a></li>
+          <li><a href="aindex.html"><i><iconify-icon icon="tabler:user-cog"></iconify-icon></i><span>admin</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Update Listing</h2>
+        </div>
+
+        <form action="#" class="row">
+
+          <div class="mb-3" style="margin-bottom: 15px;">
+            <label for="exampleDataList" class="form-label">Role Name:</label>
+            <input class="form-control" id="roleNameInput" readonly>
+          </div>
+          
+
+
+          <div class="mb-3" style="margin-bottom: 15px;">
+            <label for="exampleFormControlTextarea1" class="form-label" style="vertical-align: top;">Role Description: </label>
+            <textarea class="form-control" id="roleDescriptionField" rows="8" style="width: 800px;" readonly></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleDataList" class="form-label-for-skills">Required Skillsets:  </label>
+            <ul id="roleSkillsList" style="background-color: white; border: 5px black;columns: 3;">
+             
+              </ul>
+          </div>
+
+          
+
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="input_to">Closing Date:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <input type="date" class="form-control" id="closingDateInput" onchange="checkClosingDate()">
+                <span  id="errorMessageClosingDate" style="color: red;"></span>
+              </div>
+          </div>
+        </form>
+        <button class="btn" id="btna" type="submit" onclick="updateRoleListing()"> Update </button>
+        
+        
+
+        
+      </div>
+    </section><!-- End Portfolio Section -->
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Template Main JS File -->
+  <script>
+    // Get the query parameters from the URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    // Retrieve the value of a specific query parameter (e.g., listing_id)
+    const listingID = urlParams.get("listingID");
+
+    const urlGetListingInfo = "http://127.0.0.1:5005/listing/" + listingID;
+    axios.get(urlGetListingInfo)
+        .then(response => {
+            console.log(response.data.data);
+            const listingInfo = response.data.data;
+            const roleName = listingInfo.Role_Name;
+            console.log(roleName);
+            document.getElementById("roleNameInput").value = roleName;
+
+            const closingDate = listingInfo.Closing_Date;
+            // Create a Date object from the original date string
+            var date = new Date(closingDate);
+
+            // Extract year, month, and day components
+            var year = date.getFullYear();
+            var month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+            var day = String(date.getDate()).padStart(2, '0');
+
+            // Create the formatted date string in "yyyy-MM-dd" format
+            var formattedDateString = year + '-' + month + '-' + day;
+            console.log(formattedDateString);
+            document.getElementById("closingDateInput").value = formattedDateString;
+
+
+      
+              const urlDescription = "http://127.0.0.1:5005/role_description";
+              const urlSkills = "http://127.0.0.1:5005/role_skills/";
+
+              const param = { role_name: roleName };
+
+                axios.get(urlDescription, { params: param }).then(responseDescription => {
+                      // Process response.data for description
+                      console.log(responseDescription);
+                      var roleDescField = document.getElementById("roleDescriptionField");
+                      const description = responseDescription.data.description;
+                      roleDescField.innerHTML = description;
+
+                      // After description is loaded, retrieve skills
+                      axios.get(urlSkills + roleName).then(responseSkills => {
+                          // Process response.data for skills
+                          var roleSkillsList = document.getElementById("roleSkillsList");
+                          const skills = responseSkills.data.data;
+                          roleSkillsList.innerHTML = ''; // Clear previous skills
+
+                          for (skill of skills) {
+                              var childLi = document.createElement("li");
+                              childLi.innerText = skill;
+                              roleSkillsList.appendChild(childLi);
+                          }
+                      }).catch(errorSkills => {
+                          console.log(errorSkills.message);
+                          // Handle errors for skills retrieval
+                      });
+                  }).catch(errorDescription => {
+                      if(error.response.status == "404"){
+                            document.getElementById("errorMessageRoleNameInput").innerText = error.response.data.message;
+                          }
+                    
+                  });})
+               .catch( error => {
+            console.error(error);
+        });
+
+
+        function checkClosingDate(){
+          var closingDate = document.getElementById("closingDateInput");
+          // console.log(typeof(closingDate.value));
+
+          // Get today's date in YYYY-MM-DD format
+          var currentDate = new Date(); 
+          var year = currentDate.getFullYear();
+          var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+          var day = String(currentDate.getDate()).padStart(2, '0');
+          var formattedToday = year + '-' + month + '-' + day;
+          // console.log(typeof(formattedToday));
+        
+          if(closingDate.value <= formattedToday){
+            document.getElementById("errorMessageClosingDate").innerText = "Closing date must be after today's date";
+          }
+          else{
+            document.getElementById("errorMessageClosingDate").innerText = "";
+          }
+        }
+   
+        function updateRoleListing(){
+          checkClosingDate();
+          var urlUpdateListing = "http://127.0.0.1:5005/update_listing/" + listingID;
+
+          const json = {
+                "Closing_Date": document.getElementById("closingDateInput").value,
+              };
+
+          axios.post(urlUpdateListing, json)
+            .then(response => {
+              // Process response for the create listing
+              console.log(response.data);
+              
+              // Display a pop-up message to inform the user that the role was created successfully and link to browse page 
+              window.alert(response.data.message);
+              window.location.href = "aindex.html";
+            })
+            .catch(error => {
+              if (error.response) {
+                // The request was made, but the server responded with a status code that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);}
+                if(error.response.status == "404"){
+                      window.alert(error.response.data.message);
+                    }
+                else if (error.response.status == "422"){
+                  window.alert("Error updating role listing. Please try again.");
+                  document.getElementById("errorMessageClosingDate").innerText = error.response.data.message;
+                }
+              else {
+                console.log('Error', error.message);
+              }
+            });
+                
+        }
+  </script>
+
+</body>
+
+</html>

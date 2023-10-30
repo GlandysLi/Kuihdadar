@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- NORMAL LOGIN -->
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Kueh DaDar</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <!-- Import Vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="profile.html">Fierce Fernanda</a></h1>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+            <li><a href="aindex.html"><i><iconify-icon icon="tabler:user-cog"></iconify-icon></i><span>admin</span></a></li>
+          <li><a href="profile.html"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="skillsets.html" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>My Skills</span></a></li>
+          <li><a href="notification.html"><i class="bx bx-book-content"></i> <span>Notification</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <div id="app">
+      <!-- ======= Portfolio Section ======= -->
+      <section id="portfolio" class="portfolio section-bg">
+        <div class="container">
+          <!-- Recent Sales -->
+          <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col">
+                              <h5 class="section-title">{{ listingHeader }}</h5>
+                          </div>                     
+                      </div>
+
+                      <table class="table" id="applicants">
+                        <!-- Active table content here -->
+                        <thead>
+                          <tr>
+                            <th>Application ID</th>
+                            <th>Application Date</th>
+                            <th>Listing ID</th>
+                            <th>Staff ID</th>
+                            <th>Skills</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="applicant in applicants" :key="applicant.Application_ID">
+                            <td>{{ applicant.Application_ID }}</td>
+                            <td>{{ applicant.ApplicationDate }}</td>
+                            <td>{{ applicant.Listing_ID }}</td>
+                            <td>{{ applicant.Staff_ID }}</td>
+                            <td>
+                              <!-- Previous function using loadskills button -->
+                              <!-- <button @click="loadSkills(application.Staff_ID)">Load Skills</button> -->
+                              <!-- <ul>
+                                <li v-for="skill in applicationSkills">{{ skill }}</li>
+                              </ul> -->
+
+                              <!-- Version1  -->
+                              <button @click="updateSkillsForApplicant(applicant)">Show Skills</button>
+                              <ul>
+                                <li><h5>Matching Skills:</h5></li>
+                                  <span v-for="skill in applicant.matchingSkills" style="color: green;"><b>{{ skill }}</b><br></span>
+                                
+                                <li><h5>Non-Matching Skills:</h5></li>
+                                  <span v-for="skill in applicant.nonMatchingSkills" style="color: darkred;"><b>{{ skill }}</b><br></span>
+                                
+                              </ul>                              
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <!-- VUE JS Script for dynamic handling of data from backend app.py scripts -->
+                      <script>
+
+                        // Function to get query parameters from the URL
+                        function getQueryParameters() {
+                          var queryParams = {};
+                          var queryString = window.location.search.substring(1);
+                          var pairs = queryString.split('&');
+                          for (var i = 0; i < pairs.length; i++) {
+                            var pair = pairs[i].split('=');
+                            queryParams[pair[0]] = decodeURIComponent(pair[1]);
+                          }
+                          return queryParams;
+                        }
+
+                        // Retrieve query parameters from the URL
+                        var queryParams = getQueryParameters();
+
+
+                        new Vue({
+                          el: '#app',
+                          data: {
+                                listingHeader: queryParams.roleName || 'Default Listing Header',
+                                // "Account Manager",
+                                
+                                listingId: queryParams.listingID,  // Replace with the desired Listing ID
+                                // 101,
+                                
+                                applicants: [],
+                                applicationSkills: []
+                            },    
+                            created() {
+                                // Load applications when the component is created
+                                this.loadApplications();
+                            },
+                            methods: {
+                            loadApplications() {
+                                // Make a GET request to /get_applications to load job applications
+                                fetch('http://localhost:5005/applications?listing_id=' + this.listingId)
+                                .then(response => response.json())
+                                .then(data => {
+                                    this.applicants = data;
+                                    // // Call the method to compare skills for each applicant
+                                    // this.compareSkillsForApplicants();
+                                });
+                            },
+
+
+                            // Previous Version for just loading of skills 
+                            // loadSkills(staffId) {
+                            //     // Make a GET request to /get_skills to load staff skills
+                            //     fetch('http://localhost:8888/skills?staff_id=' + staffId)
+                            //     .then(response => response.json())
+                            //     .then(data => {
+                            //         this.applicationSkills = data;
+                            //     });
+                            // }
+
+                            // compareSkillsForApplicants() {
+                            // // Loop through applicants and make API requests to compare skills
+                            // this.applicants.forEach(applicant => {
+                            //   const apiUrl = 'http://localhost:5005/compare_skills/' + applicant.Staff_ID + '/' + this.listingHeader;
+                            //   fetch(apiUrl)
+                            //     .then(response => response.json())
+                            //     .then(data => {
+                            //       // Update the applicant object with matching and non-matching skills
+                            //       console.log('received:', data)
+                            //       console.log('API URL:', apiUrl);
+                            //       applicant.matchingSkills = data.Matching_Skills;
+                            //       applicant.nonMatchingSkills = data.Missing_Skills;
+                            //       console.log(applicant.matchingSkills)
+                            //       console.log(data.Matching_Skills)
+                            //       console.log(applicant)
+                            //     });
+                            //   });
+                            // },
+
+                            // for calling if there is a button to onclick (but doesnt work idk whyyy)
+                            updateSkillsForApplicant(applicant) {
+                              const apiUrl = 'http://localhost:5005/compare_skills/' + applicant.Staff_ID + '/' + this.listingHeader;
+                              fetch(apiUrl)
+                                .then(response => response.json())
+                                .then(data => {
+                                  this.$set(applicant, 'matchingSkills', data.Matching_Skills);
+                                  this.$set(applicant, 'nonMatchingSkills', data.Missing_Skills);
+
+                                  // Now you should be able to access these skills
+                                  console.log(applicant.matchingSkills);
+                                  console.log(applicant.nonMatchingSkills);
+                                });
+                            },
+                        },  
+                      });
+                    </script>
+
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination" id="pagination">
+                          <!-- Pagination links will be dynamically generated here -->
+                        </ul>
+                      </nav>
+                      
+                    
+                      <script>
+                        const rowsPerPage = 5; // Number of rows per page
+                        let currentPage = 1;
+                      
+                        function showTable(tableId, page) {
+                          const activeTable = document.getElementById('activeTable');
+                          const expiredTable = document.getElementById('expiredTable');
+                      
+                          // Hide all tables
+                          activeTable.style.display = 'none';
+                          expiredTable.style.display = 'none';
+                      
+                          // Show the selected table
+                          if (tableId === 'activeTable') {
+                            activeTable.style.display = 'table';
+                            currentPage = page;
+                          } else if (tableId === 'expiredTable') {
+                            expiredTable.style.display = 'table';
+                            currentPage = page;
+                          }
+                      
+                          // Update pagination
+                          updatePagination(tableId);
+                        }
+                      
+                        function updatePagination(tableId) {
+                          const table = document.getElementById(tableId);
+                          const totalRows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+                      
+                          const totalPages = Math.ceil(totalRows / rowsPerPage);
+                      
+                          const pagination = document.getElementById('pagination');
+                          let paginationHtml = '';
+                      
+                          paginationHtml += `<li class="page-item"><a class="page-link" href="#" onclick="showTable('${tableId}', ${currentPage - 1})">Previous</a></li>`;
+                      
+                          for (let i = 1; i <= totalPages; i++) {
+                            paginationHtml += `<li class="page-item ${currentPage === i ? 'active' : ''}"><a class="page-link" href="#" onclick="showTable('${tableId}', ${i})">${i}</a></li>`;
+                          }
+                      
+                          paginationHtml += `<li class="page-item"><a class="page-link" href="#" onclick="showTable('${tableId}', ${currentPage + 1})">Next</a></li>`;
+                      
+                          pagination.innerHTML = paginationHtml;
+                        }
+                      
+                        // Initial display
+                        showTable('activeTable', 1);
+                      </script>
+                  </div>
+
+              </div>
+              </div><!-- End Recent Sales -->
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

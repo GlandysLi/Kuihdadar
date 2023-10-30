@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- NORMAL LOGIN -->
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Kuih Dadar Create Role Form</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Calender -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="assets/css/classic.css">
+  <link rel="stylesheet" href="assets/css/classic.date.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <!-- Axios -->
+  <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+  
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="profile.html">Alex Smith</a></h1>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="profile.html"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="skillsets.html" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>My Skills</span></a></li>
+          <li><a href="notification.html"><i class="bx bx-book-content"></i> <span>Notification</span></a></li>
+          <li><a href="aindex.html"><i><iconify-icon icon="tabler:user-cog"></iconify-icon></i><span>admin</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Create New Listing</h2>
+        </div>
+
+        <form action="#" class="row">
+
+          <div class="mb-3" style="margin-bottom: 15px;">
+            <label for="exampleDataList" class="form-label">Role Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input class="form-control" list="roleListOptions" id="roleNameInput" placeholder="Type to search..."  
+            onkeyup="showRoleName()"  onchange="showRoleDetails()">
+          
+            <datalist id="roleListOptions">
+              
+            </datalist>
+            <span id="errorMessageRoleNameInput" style="color: red;"></span>
+          </div>
+          
+
+
+          <div class="mb-3" style="margin-bottom: 15px;">
+            <label for="exampleFormControlTextarea1" class="form-label" style="vertical-align: top;">Role Description: </label>
+            <textarea class="form-control" id="roleDescriptionField" rows="8" style="width: 800px;" onchange="showRoleSkills()" readonly></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleDataList" class="form-label-for-skills">Required Skillsets:  </label>
+            <ul id="roleSkillsList" style="background-color: white; border: 5px black;columns: 3;">
+             
+              </ul>
+          </div>
+
+          
+
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="input_to">Closing Date:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <input type="date" class="form-control" id="closingDate" onchange="checkClosingDate()">
+                <span id="errorMessageClosingDate" style="color: red;"></span>
+              </div>
+          </div>
+        </form>
+        <button class="btn" id="btna" type="submit" onclick="createRoleListing()"> Add Role </button>
+        
+        
+
+        
+      </div>
+    </section><!-- End Portfolio Section -->
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <!-- <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/js/jquery-3.3.1.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/picker.js"></script>
+  <script src="assets/js/picker.date.js"></script> -->
+
+  <!-- Template Main JS File -->
+  <!-- <script src="assets/js/main.js"> -->
+    <script>
+    
+    
+    function showRoleName(){
+            var query1 = document.getElementById("roleNameInput").value;
+            const url1 = "http://127.0.0.1:5005/role_search";
+            const param1 = {search_name: query1};
+
+            axios.get(url1, {params: param1}) .then(response => {
+                    // process response.data object
+                const roleNameList = response.data.suggestions
+                var parentE = document.getElementById("roleListOptions");
+                parentE.innerHTML = "";
+                for(roleName of roleNameList){
+                  console.log(query1)
+                  if(roleName != query1){
+                    var newE = document.createElement("option");
+                    newE.setAttribute("value", roleName);
+                    parentE.appendChild(newE);
+
+                    //clear role description if query does not match role name 
+                    var roleDescField = document.getElementById("roleDescriptionField");
+                    roleDescField.innerHTML="";
+
+                    //clear role skills if query does not match role name
+                    var roleSkillsList = document.getElementById("roleSkillsList");
+                    roleSkillsList.innerHTML="";
+                  }
+                  //role name typed in correctly
+                  else{
+                    //clear error message
+                    document.getElementById("errorMessageRoleNameInput").innerText = "";
+                  }
+              }
+                })
+            .catch(error => {
+            // process error object
+                if(error.response){
+                    // console.log(error.response.data);
+                    // console.log(error.response.status);
+                    if(error.response.status == "404"){
+                      document.getElementById("errorMessageRoleNameInput").innerText = error.response.data.message;
+                    }
+                }
+              }); 
+        }
+
+        
+    
+    function checkRoleName(callback) {
+    var roleNameInput = document.getElementById("roleNameInput").value;
+
+    const urlCheckRoleName = "http://127.0.0.1:5005/check_role_name";
+    const paramCheckRoleName = { role_name: roleNameInput };
+
+    axios.get(urlCheckRoleName, { params: paramCheckRoleName })
+        .then(response => {
+            // Process response.data for description
+            console.log(response.data);
+            // Check if the role name is valid and pass the result to the callback
+            callback(true); // Role name is valid
+        })
+        .catch(error => {
+            // Handle errors for invalid role name
+            console.log(error.message);
+            // Pass the result to the callback
+            callback(false); // Role name is invalid
+        });
+}
+
+
+function showRoleDetails() {
+    var roleNameInput = document.getElementById("roleNameInput").value;
+    const urlDescription = "http://127.0.0.1:5005/role_description";
+    const urlSkills = "http://127.0.0.1:5005/role_skills/";
+
+    const param = { role_name: roleNameInput };
+
+    // Call checkRoleName function to validate the role name first
+    checkRoleName(function(isValid) {
+        // console.log("hellooo");
+        if (isValid) {
+            // Role name is valid, proceed with loading description and skills
+            axios.get(urlDescription, { params: param }).then(responseDescription => {
+                // Process response.data for description
+                var roleDescField = document.getElementById("roleDescriptionField");
+                const description = responseDescription.data.description;
+                roleDescField.innerHTML = description;
+
+                // After description is loaded, retrieve skills
+                axios.get(urlSkills + roleNameInput).then(responseSkills => {
+                    // Process response.data for skills
+                    var roleSkillsList = document.getElementById("roleSkillsList");
+                    const skills = responseSkills.data.data;
+                    roleSkillsList.innerHTML = ''; // Clear previous skills
+
+                    for (skill of skills) {
+                        var childLi = document.createElement("li");
+                        childLi.innerText = skill;
+                        roleSkillsList.appendChild(childLi);
+                    }
+                }).catch(errorSkills => {
+                    console.log(errorSkills.message);
+                    // Handle errors for skills retrieval
+                });
+            }).catch(errorDescription => {
+                if(error.response.status == "404"){
+                      document.getElementById("errorMessageRoleNameInput").innerText = error.response.data.message;
+                    }
+                // Handle errors for description retrieval
+            });
+        } else {
+            // Role name is invalid, display an error message
+            document.getElementById("errorMessageRoleNameInput").innerText = "Invalid role name. Please select the correct role name.";
+        }
+    });
+}
+
+
+
+      
+        function checkClosingDate(){
+          var closingDate = document.getElementById("closingDate");
+          // console.log(typeof(closingDate.value));
+
+          // Get today's date in YYYY-MM-DD format
+          var currentDate = new Date(); 
+          var year = currentDate.getFullYear();
+          var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+          var day = String(currentDate.getDate()).padStart(2, '0');
+          var formattedToday = year + '-' + month + '-' + day;
+          // console.log(typeof(formattedToday));
+        
+          if(closingDate.value <= formattedToday){
+            document.getElementById("errorMessageClosingDate").innerText = "Closing date must be after today's date";
+          }
+          else{
+            document.getElementById("errorMessageClosingDate").innerText = "";
+          }
+        }
+
+        function createRoleListing() {
+          // Check the closing date before making the request
+          checkClosingDate();
+          const roleNameInput = document.getElementById("roleNameInput").value;
+
+          // Call the checkRoleName function with a callback
+          checkRoleName(function(isValid) {
+            if (isValid) {
+              // The role name is valid; you can proceed to create the listing
+              const closingDate = document.getElementById("closingDate").value;
+              const json = {
+                "Role_Name": roleNameInput,
+                "Closing_Date": closingDate,
+              };
+
+              const urlCreateListing = "http://127.0.0.1:5005/create_listing";
+
+              // Make a POST request to create the listing
+              axios.post(urlCreateListing, json)
+                .then(response => {
+                  // Process response for the create listing
+                  console.log(response.data);
+                  
+                  // Display a pop-up message to inform the user that the role was created successfully and link to browse page 
+                  window.alert("Role created successfully!");
+                  // const listingID = response.data.Listing_ID;
+                  // const redirectTo = `aindex.html?listing_id=${listingId}`;
+                  window.location.href = "aindex.html";
+                })
+                .catch(error => {
+                  if (error.response) {
+                    window.alert("Error creating role listing. Please try again.");
+                    // The request was made, but the server responded with a status code that falls out of the range of 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    if(error.response.status == "409"){
+                      document.getElementById("errorMessageRoleNameInput").innerText = error.response.data.message;
+                    }
+                    if (error.response.status == "422"){
+                      document.getElementById("errorMessageClosingDate").innerText = error.response.data.message;
+                    }
+                    
+                  } else if (error.request) {
+                    // The request was made but no response was received, 'error.request' is an instance of XMLHttpRequest in the browser
+                    console.log(error.request);
+                  } else {
+                    // Something happened in setting up the request that triggered an error
+                    console.log('Error', error.message);
+                  }
+                  // console.log(error.config);
+                });
+            } else {
+              // The role name is invalid; show an error message or handle it as needed
+              document.getElementById("errorMessageRoleNameInput").innerText = "Invalid role name. Please select the correct role name.";
+            }
+          });
+        }
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- NORMAL LOGIN -->
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Kueh DaDar</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="profile.html">Alex Smith</a></h1>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="profile.html"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="skillsets.html" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>My
+                Skills</span></a></li>
+          <li><a href="notification.html"><i class="bx bx-book-content"></i> <span>Notification</span></a></li>
+          <li><a href="aindex.html"><i><iconify-icon icon="tabler:user-cog"></iconify-icon></i><span>admin</span></a>
+          </li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
+        <div class="section-title">
+          <h2>All Roles</h2>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <form class="d-flex">
+            <input class="form-control me-1" type="text" id="roleNameFilter" placeholder="Search" aria-label="Search"  oninput="filterTable()">
+            <!-- <button class="btn" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="white"
+                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
+              </svg>
+            </button> -->
+          </form>
+
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+
+          
+          
+
+        </div>
+        <div id="app">
+          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+            <div v-for="(listing, index) in activeListings" :key="index"
+              class="col-lg-4 col-md-6 portfolio-item filter-card equal-height" style="padding: 20px">
+              <!-- <div class="portfolio-wrap"> -->
+              <div>
+                <div class="title">
+                  <h3>{{ listing.Role_Name }}</h3> <!-- Display role name -->
+                </div>
+                <h4>About the job</h4>
+                <div class="text">
+                  <p>{{ roleDescriptions[listing.Role_Name] }}</p> <!-- Display role description based on role name -->
+                </div>
+                <br>
+                <h6 style="color:red">Closing on {{ listing.Closing_Date }}</h6>
+
+                <a class="btn" :href=`individual.html?staffID=${staffID}&roleName=${listing.Role_Name}` title="More Details">More Details <i class="bx bx-link"></i></a>
+                  <!-- button with hyperlink based on role name -->
+                  <!-- <a :href="'http://localhost:5005/apply/' + listing.Listing_ID + '/' + staffID">Apply</a> -->
+                  <a class="btn"   v-on:click="createApplication(listing.Listing_ID, staffID)">Apply <i class="bx bx-right-arrow-circle"></i></a>
+
+                  
+                <!-- <div class="portfolio-links">
+                   <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                  <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z" />
+                              </svg>
+                          </a> -->
+                  <!-- <a href="individual.html" title="More Details"><i class="bx bx-link"></i></a> -->
+                  <!-- button with hyperlink based on role name -->
+                  <!-- <a :href="'http://localhost:5005/apply/' + listing.Listing_ID + '/' + staffID">Apply</a> -->
+                  <!-- <a  v-on:click="createApplication(listing.Listing_ID, staffID)"> Apply <i class="bx bx-right-arrow-circle"></i></a> -->
+                <!-- </div>  -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="your-vue-axios-script.js"></script>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+  </main><!-- End #main -->
+
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        activeListings: [],
+        roleDescriptions: {},
+        staffID: '130001',
+        sortOrder: 'asc' // Default sort order 
+      },
+      mounted() {
+
+        // Fetch role data using Axios
+        axios.get('http://localhost:5005/listings/active')
+          .then(response => {
+            this.activeListings = response.data.Listings;
+            // Fetch role descriptions
+            axios.get('http://localhost:5005/active_listing_description')
+              .then(response => {
+                this.roleDescriptions = response.data;
+              })
+              .catch(error => {
+                console.error('Error fetching role descriptions', error);
+              });
+          })
+          .catch(error => {
+            console.error('Error fetching roles', error);
+          });
+      },
+
+      // create a function
+      methods: {
+        createApplication(listingID, staffID) {
+         
+          const json = {
+            "Listing_ID": listingID,
+            "Staff_ID": staffID
+          };
+
+          const urlCreateApplication = "http://localhost:5005/apply"
+
+          // Make a POST request to create the application
+          axios.post(urlCreateApplication, json)
+            .then(response => {
+              // Process response for the create application
+              console.log(response.data);
+              // Display a pop-up message to inform the user that the application was created successfully
+              window.alert("Application created successfully!");
+            })
+            .catch(error => {
+              if (error.response) {
+                // The request was made, but the server responded with a status code that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                if (error.response.status == "409") {
+                  window.alert(error.response.data.message);
+                }
+
+              } else if (error.request) {
+                // The request was made but no response was received, 'error.request' is an instance of XMLHttpRequest in the browser
+                console.log(error.request);
+              } else {
+                // Something happened in setting up the request that triggered an error
+                console.log('Error', error.message);
+              }
+              // console.log(error.config);
+            });
+
+    }
+  }
+  });
+
+  // Get the input fields for filtering
+  const roleNameFilter = document.getElementById('roleNameFilter');
+  // Add event listeners for the input fields
+  roleNameFilter.addEventListener('input', filterTable);
+
+  function filterTable() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("roleNameFilter");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("app");
+    tr = table.getElementsByClassName("portfolio-item");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("h3")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            console.log("Filter:", filter);
+            console.log("Text Value:", txtValue);
+            if (containsWordsStartingWith(txtValue.toUpperCase(), filter)) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+  }
+
+  // Function to account for 2nd word in role name 
+  // if have "Finance Director" and "Consultancy Director" and user inputs "Di...", both will show
+  function containsWordsStartingWith(text, filter) {
+    const words = text.split(" ");
+    for (const word of words) {
+      if (word.startsWith(filter)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+</script>
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
