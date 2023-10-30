@@ -1,0 +1,44 @@
+Thanks for downloading this template!
+
+Template Name: iPortfolio
+Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+Author: BootstrapMade.com
+License: https://bootstrapmade.com/license/
+
+index.html  >> list of roles (employee) 
+KD-5: Browse roles listing (staff)
+KD-6 Filter role listing (staff)
+ 
+individual.html >> the individual job page (employee) 
+*** Please help with the button hovering color and also the alignment ***
+KD-7: View role-skill match (staff) 
+*** Clarissa, Please help to add the tick, cross for skills portion ***
+KD-8: Apply for role (staff) 
+*** Need to add notification to show that application had been successful! ***
+
+aindex.html >> list of roles (admin's view) 
+KD-1: Create role listing (HR)
+*** Need to discuss about the skill portion ***
+KD-2: Read roles listing (HR) 
+
+aindividual.html >> the individual job page (admin's view) 
+added update button and will link to update.html
+*** Will need to update the content after the individual.html is done! ***
+
+updaterole.html >> updating the roles (admin's view) 
+to update the particular role
+*** might need to edit the form but skeleton is there ***
+
+viewapplicant.html[not done yet]
+*** can follow the table style from aindex.html ***
+
+applicant.html >> list of applicants that applied the particular roles (admin's view) 
+KD-4: View Skills applicants (HR)
+will be brought to this page from viewapplicant.html upon clicking on the individual 
+
+
+if got time, 
+profile.html (BOTH) 
+skillsset.html >> list of acquired skillsets (BOTH) 
+notification.html (BOTH)
+
